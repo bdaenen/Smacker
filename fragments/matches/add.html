@@ -1,0 +1,177 @@
+<h2>Add match</h2>
+<div class="row">
+    <div class="col-sm">
+        <form id="add_match_form" method="post" action="#">
+            <fieldset>
+                <legend>Match data</legend>
+                <div class="form-group">
+                    <label for="is_team">Team match*</label>
+                    <input class="form-control" type="checkbox" id="is_team" name="match[is_team]" value="1">
+                </div>
+                <div class="form-group">
+                    <label for="match_date">Date*</label>
+                    <input class="form-control" type="date" required="" id="match_date" name="match[date]" value="">
+                </div>
+                <div class="form-group">
+                    <label for="match_stocks">Stocks*</label>
+                    <input class="form-control" type="number" required="" id="match_stocks" name="match[stocks]" value="3">
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm">
+                            <label for="match_time">Time Limit</label>
+                            <input class="form-control" type="time" step="1" id="match_time" name="match[time]" value="">
+                        </div>
+                        <div class="col-sm">
+                            <label for="match_time_remaining">Time Left</label>
+                            <input class="form-control" type="time" step="1" id="match_time_remaining" name="match[time_remaining]" value="">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="match_stage">Stage*</label>
+                    <select id="match_stage" data-src="stages" name="match[stage_id]"><option></option></select>
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>Player data</legend>
+                <div class="js-player-row">
+                    <h3>Player 1</h3>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm">
+                                <label for="player_user_0">Tag*</label>
+                                <select id="player_user_0" data-src="users" name="players[user_id][]">
+                                    <option></option>
+                                </select>
+                            </div>
+                            <div class="col-sm">
+                                <label for="player_character_0">Character*</label>
+                                <select id="player_character_0" data-src="characters" name="players[character_id][]">
+                                    <option></option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm">
+                                <label for="player_team_0">Team</label>
+                                <select id="player_team_0" data-src="teams" name="players[team_id][]">
+                                    <option></option>
+                                </select>
+                            </div>
+                            <div class="col-sm">
+                                <label for="player_winner_0">Winner*</label>
+                                <input id="player_winner_0" type="checkbox" name="winner" value="0"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="player_stocks_0">Stocks Left</label>
+                        <input class="form-control" type="number" step="1" id="player_stocks_0" name="players[data][0][stocks]" value="">
+                    </div>
+                </div>
+                <div class="js-player-row">
+                    <h3>Player 2</h3>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm">
+                                <label for="player_user_1">Tag*</label>
+                                <select id="player_user_1" data-src="users" name="players[user_id][]">
+                                    <option></option>
+                                </select>
+                            </div>
+                            <div class="col-sm">
+                                <label for="player_character_1">Character*</label>
+                                <select id="player_character_1" data-src="characters" name="players[character_id][]">
+                                    <option></option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm">
+                                <label for="player_team_1">Team</label>
+                                <select id="player_team_1" data-src="teams" name="players[team_id][]">
+                                    <option></option>
+                                </select>
+                            </div>
+                            <div class="col-sm">
+                                <label for="player_winner_1">Winner*</label>
+                                <input id="player_winner_1" type="checkbox" name="winner" value="1"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="player_stocks_1">Stocks Left</label>
+                        <input class="form-control" type="number" step="1" id="player_stocks_1" name="players[data][1][stocks]" value="">
+                    </div>
+                </div>
+            </fieldset>
+            <div class="form-group">
+                <input class="btn btn-outline-primary" type="submit" value="Submit">
+            </div>
+        </form>
+    </div>
+    <div class="col-sm">
+    </div>
+</div>
+<script type="text/javascript">
+    var $form = $('#add_match_form');
+    var app = window.app;
+    $form.find('#match_date').val(new Date().toISOString().substr(0, 10));
+    $form.find('[data-src="stages"]').each(function(){
+      var $select = $(this);
+      app.getStages(function(stages){
+        stages.data.forEach(function(stage){
+          $select.append($('<option>').text(stage.name).attr('value', stage.id));
+        })
+      });
+    });
+    $form.find('[data-src="characters"]').each(function(){
+      var $select = $(this);
+      app.getCharacters(function(characters){
+        characters.data.forEach(function(character){
+          $select.append($('<option>').text(character.name).attr('value', character.id));
+        })
+      });
+    });
+    $form.find('[data-src="users"]').each(function(){
+      var $select = $(this);
+      app.getUsers(function(users){
+        users.data.forEach(function(user){
+          $select.append($('<option>').text(user.tag).attr('value', user.id));
+        })
+      });
+    });
+    $form.find('[data-src="teams"]').each(function(){
+      var $select = $(this);
+      app.getTeams(function(teams){
+        teams.data.forEach(function(team){
+          $select.append($('<option>').text(team.name).attr('value', team.id));
+        })
+      });
+    });
+
+    $form.on('submit', function(e) {
+        e.preventDefault();
+        var data = $(this).serializeObject();
+        var formattedData = {};
+        formattedData.match = data.match;
+        // TODO: make dynamic nr
+        formattedData.players = [];
+
+        for (var i = 0; i < 2; i++) {
+          formattedData.players[i] = {};
+          Object.keys(data.players).forEach(function(key){
+            formattedData.players[i][key] = data.players[key][i]
+          });
+          formattedData.players[i].data = data.players.data[i];
+          formattedData.players[i].is_winner = +(i == data.winner);
+        }
+
+        console.log(formattedData);
+    });
+</script>
