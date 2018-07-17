@@ -2,7 +2,7 @@
     'use strict';
 
     window.config = {
-      apiHost: 'http://127.0.0.1:3000',
+      apiHost: 'https://smashtrack.benn0.be',
       endpoints: {
         login: {
           login: '/login'
