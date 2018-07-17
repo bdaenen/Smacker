@@ -7,26 +7,24 @@
     var app = {
       $mainContent: $('.js-main'),
       isAuthenticated: function(callback) {
-        if (sessionStorage.getItem('authenticated') === 'true') {
+        if (this.getUser()) {
           callback(true);
         }
-        $.ajax({
-          url: this.getEndpointUrl('login', 'login'),
-          method: 'GET'
-        }).done(function(response){
-          console.log(response);
-          callback(response.authenticated);
-        })
+        else {
+          this.apiGet('login', 'login', function(response){
+            callback(response.authenticated)
+          });
+        }
       },
       authenticate: function(data, callback) {
-        $.ajax({
-          url: window.app.getEndpointUrl('login', 'login'),
-          method: 'post',
-          data: data
-        }).done(function(response){
+        this.apiPost('login', 'login', data, function(response){
           if (response.authenticated) {
             setUser(response.user);
             callback(this.getUser());
+          }
+          else {
+            clearUser();
+            this.showMessage('danger', 'Authentication failed. Please try again.')
           }
         }.bind(this));
       },
@@ -37,59 +35,61 @@
         }
         return null;
       },
-      getStages: function(callback) {
+      apiGet: function(router, route, callback) {
+        this.clearMessages();
         $.ajax({
-          url: this.getEndpointUrl('stages', 'list'),
+          url: this.getEndpointUrl(router, route),
           method: 'get',
-        }).done(function(response){
-          callback(response);
-        });
+          xhrFields: {withCredentials: true},
+          crossDomain: true
+        })
+          .done(callback)
+          .fail(function(xhr, status, error){
+            if (status == 'error') {
+              clearUser();
+              this.loadPage('/login/login');
+            }
+          }.bind(this));
+      },
+      apiPost: function(router, route, data, callback) {
+        this.clearMessages();
+        $.ajax({
+          url: this.getEndpointUrl(router, route),
+          data: JSON.stringify(data),
+          method: 'post',
+          dataType: 'json',
+          contentType: "application/json; charset=utf-8",
+          crossDomain: true
+        }).done(callback)
+          .fail(function(){
+            this.showMessage('danger', 'Something went wrong. The submitted data was probably not saved.')
+          });
+      },
+      getStages: function(callback) {
+        this.apiGet('stages', 'list', callback);
       },
       getCharacters: function(callback) {
-        $.ajax({
-          url: this.getEndpointUrl('characters', 'list'),
-          method: 'get',
-        }).done(function(response){
-          callback(response);
-        });
+        this.apiGet('characters', 'list', callback);
       },
       getUsers: function(callback) {
-        $.ajax({
-          url: this.getEndpointUrl('users', 'list'),
-          method: 'get',
-        }).done(function(response){
-          callback(response);
-        });
+        this.apiGet('users', 'list', callback);
       },
       getTeams: function(callback) {
-        $.ajax({
-          url: this.getEndpointUrl('teams', 'list'),
-          method: 'get',
-        }).done(function(response){
-          callback(response);
-        });
+        this.apiGet('teams', 'list', callback);
       },
-      getEndpointUrl: function(entity, route) {
-        return config.apiHost + config.endpoints[entity][route];
+      getEndpointUrl: function(router, route) {
+        return config.apiHost + config.endpoints[router][route];
       },
       loadPage: function(path, data, callback) {
-        data = data || null;
-        callback = callback || null;
-        if (_isLoading) {return;}
-        _isLoading = true;
-        $.ajax({
-          url: '/fragments' + path + '.html',
-          method: 'get'
-        }).done(function(response){
-          this.$mainContent.html(this.renderTemplate(response, data));
-          _isLoading = false;
-
-          _ignoreHashChange = true;
-          window.location.hash = '#' + path;
-          _ignoreHashChange = false;
-
-          callback && callback(path);
-        }.bind(this));
+        this.isAuthenticated(function(authenticated){
+          if (authenticated) {
+            loadPage.call(this, path, data, callback);
+          }
+          else {
+            loadPage.call(this, '/login/login');
+            setTimeout(function(){this.showMessage('info', 'You were logged out. Please log in to continue.')}.bind(this), 100);
+          }
+        }.bind(this))
       },
       renderTemplate: function(template, data) {
         if (!data) {return template;}
@@ -101,9 +101,27 @@
         return template;
       },
       handleHashChange: function() {
-        var path = window.location.hash.substr(1);
-        console.log(path);
-        this.loadPage(path);
+        if (_ignoreHashChange) {
+          return;
+        }
+        var path = window.location.hash.substr(1) || '/home/home';
+        var data = {};
+        if (this.getUser()) {
+          data.userTag = this.getUser().tag;
+        }
+        this.loadPage(path, data);
+      },
+      showMessage: function(type, message) {
+        var $message = $('<div role="alert" class="alert alert-' + type + '">');
+        $message.html(message);
+        this.$mainContent.prepend($message);
+      },
+      clearMessages: function() {
+        this.$mainContent.find('.alert').remove();
+      },
+      saveMatch: function(data, callback) {
+        console.log(data);
+        this.apiPost('matches', 'add', data, callback);
       }
     };
 
@@ -112,6 +130,35 @@
      */
     function setUser(user) {
       sessionStorage.setItem('user', JSON.stringify(user));
+    }
+
+    /**
+     *
+     */
+    function clearUser() {
+      sessionStorage.removeItem('user');
+    }
+
+    function loadPage(path, data, callback) {
+        data = data || null;
+        callback = callback || null;
+
+        if (_isLoading) {return;}
+        _isLoading = true;
+        $.ajax({
+          url: '/fragments' + path + '.html',
+          method: 'get'
+        }).done(function(response){
+          this.$mainContent.html(this.renderTemplate(response, data));
+          _isLoading = false;
+          _ignoreHashChange = true;
+          window.location.hash = '#' + path;
+          _ignoreHashChange = false;
+          callback && callback(path);
+          }.bind(this))
+          .fail(function(){
+            _isLoading = false;
+          });
     }
 
     if (sessionStorage.getItem('user')) {
@@ -129,7 +176,7 @@
     });
 
     window.onhashchange = app.handleHashChange.bind(app);
-    app.handleHashChange();
+    !_isLoading && app.handleHashChange();
 
     window.app = app;
 }());

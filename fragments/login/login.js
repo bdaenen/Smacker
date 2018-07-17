@@ -5,7 +5,7 @@
     e.preventDefault();
 
     var data = $(this).serializeObject();
-    window.app.authenticate(data, function(user){
+    app.authenticate(data, function(user){
       if (user) {
         app.loadPage('/home/home', {userTag: user.tag});
       }
