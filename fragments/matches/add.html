@@ -8,14 +8,14 @@
                     <div class="col-sm">
                         <div class="form-group">
                             <label for="match_date">Date*</label>
-                            <input class="form-control" type="date" required="" id="match_date" name="match[date]" value="">
+                            <input class="form-control" type="date" required id="match_date" name="match[date]" value="">
                         </div>
                     </div>
                     <div class="col-sm">
                         <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="is_team" name="match[is_team]" value="1">
                             <label class="form-check-label" for="is_team">
-                                <input class="form-check-input" type="checkbox" id="is_team" name="match[is_team]" value="1">
-                                Team match*
+                                Team match
                             </label>
                         </div>
                     </div>
@@ -24,13 +24,13 @@
                     <div class="col-sm">
                         <div class="form-group">
                             <label for="match_stage">Stage*</label>
-                            <select id="match_stage" class="form-control" data-src="stages" name="match[stage_id]"><option></option></select>
+                            <select id="match_stage" required class="form-control" data-src="stages" name="match[stage_id]"><option></option></select>
                         </div>
                     </div>
                     <div class="col-sm">
                         <div class="form-group">
                             <label for="match_stocks">Stocks*</label>
-                            <input class="form-control" type="number" required="" id="match_stocks" name="match[stocks]" value="3">
+                            <input class="form-control" type="number" required id="match_stocks" name="match[stocks]" value="3">
                         </div>
                     </div>
                 </div>
@@ -38,7 +38,7 @@
                     <div class="row">
                         <div class="col-sm">
                             <label for="match_time">Time Limit</label>
-                            <input class="form-control" type="time" step="1" id="match_time" name="match[time]" value="">
+                            <input class="form-control" type="time" step="1" id="match_time" name="match[time]" value="00:06:00">
                         </div>
                         <div class="col-sm">
                             <label for="match_time_remaining">Time Left</label>
@@ -56,14 +56,14 @@
                             <div class="col-sm">
                                 <div class="form-group">
                                     <label for="player_user_0">Tag*</label>
-                                    <select id="player_user_0" data-src="users" name="players[user_id][]" class="form-control">
+                                    <select id="player_user_0" data-src="users" required name="players[user_id][]" class="form-control">
                                         <option></option>
                                     </select>
                                 </div>
                             </div>
                             <div class="col-sm">
                                 <label for="player_character_0">Character*</label>
-                                <select id="player_character_0" data-src="characters" name="players[character_id][]" class="form-control">
+                                <select id="player_character_0" data-src="characters" required name="players[character_id][]" class="form-control">
                                     <option></option>
                                 </select>
                             </div>
@@ -79,15 +79,15 @@
                             </div>
                             <div class="col-sm">
                                 <div class="form-group">
-                                    <label for="player_stocks_0">Stocks Left</label>
-                                    <input class="form-control" type="number" step="1" id="player_stocks_0" name="players[data][0][stocks]" value="">
+                                    <label for="player_stocks_0">Stocks Left*</label>
+                                    <input class="form-control" required type="number" step="1" id="player_stocks_0" name="players[data][0][stocks]" value="0">
                                 </div>
                             </div>
                         </div>
                         <div class="form-check">
+                            <input id="player_winner_0" type="checkbox" name="winner" value="0" class="form-check-input"/>
                             <label for="player_winner_0">
-                                <input id="player_winner_0" type="checkbox" name="winner" value="0" class="form-check-input"/>
-                                P1 Winner*
+                                P1 Winner
                             </label>
                         </div>
                     </fieldset>
@@ -95,42 +95,44 @@
                 <div class="js-player-row">
                     <fieldset>
                         <legend>Player 2</legend>
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-sm">
+                        <div class="row">
+                            <div class="col-sm">
+                                <div class="form-group">
                                     <label for="player_user_1">Tag*</label>
-                                    <select id="player_user_1" data-src="users" name="players[user_id][]" class="form-control">
+                                    <select id="player_user_1" data-src="users" required name="players[user_id][]" class="form-control">
                                         <option></option>
                                     </select>
                                 </div>
-                                <div class="col-sm">
+                            </div>
+                            <div class="col-sm">
+                                <div class="form-group">
                                     <label for="player_character_1">Character*</label>
-                                    <select id="player_character_1" data-src="characters" name="players[character_id][]" class="form-control">
+                                    <select id="player_character_1" data-src="characters" required name="players[character_id][]" class="form-control">
                                         <option></option>
                                     </select>
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-sm">
+                        <div class="row">
+                            <div class="col-sm">
+                                <div class="form-group">
                                     <label for="player_team_1">Team</label>
                                     <select id="player_team_1" data-src="teams" name="players[team_id][]" class="form-control">
                                         <option></option>
                                     </select>
                                 </div>
-                                <div class="col-sm">
-                                    <div class="form-group">
-                                        <label for="player_stocks_1">Stocks Left</label>
-                                        <input class="form-control" type="number" step="1" id="player_stocks_1" name="players[data][1][stocks]" value="">
-                                    </div>
+                            </div>
+                            <div class="col-sm">
+                                <div class="form-group">
+                                    <label for="player_stocks_1">Stocks Left*</label>
+                                    <input class="form-control" required type="number" step="1" id="player_stocks_1" name="players[data][1][stocks]" value="0">
                                 </div>
                             </div>
                         </div>
                         <div class="form-check">
-                            <label for="player_winner_2">
-                                <input id="player_winner_1" type="checkbox" name="winner" value="1" class="form-check-input"/>
-                                P2 Winner*
+                            <input id="player_winner_1" type="checkbox" name="winner" value="1" class="form-check-input"/>
+                            <label for="player_winner_1">
+                                P2 Winner
                             </label>
                         </div>
                     </fieldset>

@@ -12,8 +12,11 @@
         }
         else {
           this.apiGet('login', 'login', function(response){
+            if (response.authenticated && !this.getUser()) {
+              setUser(response.user);
+            }
             callback(response.authenticated)
-          });
+          }.bind(this));
         }
       },
       authenticate: function(data, callback) {
@@ -108,11 +111,7 @@
           return;
         }
         var path = window.location.hash.substr(1) || '/home/home';
-        var data = {};
-        if (this.getUser()) {
-          data.userTag = this.getUser().tag;
-        }
-        this.loadPage(path, data);
+        this.loadPage(path);
       },
       showMessage: function(type, message) {
         var $message = $('<div role="alert" class="alert alert-' + type + '">');
