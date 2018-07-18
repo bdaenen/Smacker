@@ -87,3 +87,66 @@ h2:before, h3:before, h4:before, h5:before, h6:before {
   left: 0;
   bottom: -3px;
 }
+
+.form-check {
+  display: flex;
+  align-items: center;
+  margin: 15px 0;
+  padding-left: 0;
+}
+
+.col-sm > .form-check {
+  margin: 0;
+  height: 100%;
+  padding-left: 0;
+}
+
+input[type="checkbox"] {
+  display: none;
+}
+
+input[type="checkbox"] + label {
+  position: relative;
+}
+input[type="checkbox"] + label:hover:before,
+input[type="checkbox"] + label:focus:before {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+input[type="checkbox"] + label:before {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--teal);
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: .25rem;
+  vertical-align: middle;
+  margin-right: 5px;
+  transition: background-color 200ms;
+}
+input[type="checkbox"]:checked + label:before {
+  content: '';
+  background-color: var(--teal);
+}
+
+input[type="checkbox"] + label:after {
+  content: '';
+  opacity: 0;
+  transition: opacity 200ms;
+  border-right: 2px solid white;
+  border-bottom: 2px solid white;
+  display: block;
+  height: 12px;
+  width: 7px;
+  transform: rotate(33deg);
+  position: absolute;
+  top: 6px;
+  left: 7px;
+  right: 0;
+  bottom: 0;
+}
+
+input[type="checkbox"]:checked + label:after {
+  opacity: 1;
+}
