@@ -4,17 +4,35 @@
         <form id="add_match_form" method="post" action="#">
             <fieldset>
                 <legend>Match data</legend>
-                <div class="form-group">
-                    <label for="is_team">Team match*</label>
-                    <input class="form-control" type="checkbox" id="is_team" name="match[is_team]" value="1">
+                <div class="row">
+                    <div class="col-sm">
+                        <div class="form-group">
+                            <label for="match_date">Date*</label>
+                            <input class="form-control" type="date" required="" id="match_date" name="match[date]" value="">
+                        </div>
+                    </div>
+                    <div class="col-sm">
+                        <div class="form-check">
+                            <label class="form-check-label" for="is_team">
+                                <input class="form-check-input" type="checkbox" id="is_team" name="match[is_team]" value="1">
+                                Team match*
+                            </label>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="match_date">Date*</label>
-                    <input class="form-control" type="date" required="" id="match_date" name="match[date]" value="">
-                </div>
-                <div class="form-group">
-                    <label for="match_stocks">Stocks*</label>
-                    <input class="form-control" type="number" required="" id="match_stocks" name="match[stocks]" value="3">
+                <div class="row">
+                    <div class="col-sm">
+                        <div class="form-group">
+                            <label for="match_stage">Stage*</label>
+                            <select id="match_stage" class="form-control" data-src="stages" name="match[stage_id]"><option></option></select>
+                        </div>
+                    </div>
+                    <div class="col-sm">
+                        <div class="form-group">
+                            <label for="match_stocks">Stocks*</label>
+                            <input class="form-control" type="number" required="" id="match_stocks" name="match[stocks]" value="3">
+                        </div>
+                    </div>
                 </div>
                 <div class="form-group">
                     <div class="row">
@@ -28,22 +46,20 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="match_stage">Stage*</label>
-                    <select id="match_stage" class="form-control" data-src="stages" name="match[stage_id]"><option></option></select>
-                </div>
             </fieldset>
             <fieldset>
-                <legend>Player data</legend>
+                <legend hidden>Player data</legend>
                 <div class="js-player-row">
-                    <h3>Player 1</h3>
-                    <div class="form-group">
+                    <fieldset>
+                        <legend>Player 1</legend>
                         <div class="row">
                             <div class="col-sm">
-                                <label for="player_user_0">Tag*</label>
-                                <select id="player_user_0" data-src="users" name="players[user_id][]" class="form-control">
-                                    <option></option>
-                                </select>
+                                <div class="form-group">
+                                    <label for="player_user_0">Tag*</label>
+                                    <select id="player_user_0" data-src="users" name="players[user_id][]" class="form-control">
+                                        <option></option>
+                                    </select>
+                                </div>
                             </div>
                             <div class="col-sm">
                                 <label for="player_character_0">Character*</label>
@@ -52,70 +68,78 @@
                                 </select>
                             </div>
                         </div>
-                    </div>
-                    <div class="form-group">
                         <div class="row">
                             <div class="col-sm">
-                                <label for="player_team_0">Team</label>
-                                <select id="player_team_0" data-src="teams" name="players[team_id][]" class="form-control">
-                                    <option></option>
-                                </select>
+                                <div class="form-group">
+                                    <label for="player_team_0">Team</label>
+                                    <select id="player_team_0" data-src="teams" name="players[team_id][]" class="form-control">
+                                        <option></option>
+                                    </select>
+                                </div>
                             </div>
                             <div class="col-sm">
-                                <label for="player_winner_0">Winner*</label>
-                                <input id="player_winner_0" type="checkbox" name="winner" value="0" class="form-control"/>
+                                <div class="form-group">
+                                    <label for="player_stocks_0">Stocks Left</label>
+                                    <input class="form-control" type="number" step="1" id="player_stocks_0" name="players[data][0][stocks]" value="">
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="player_stocks_0">Stocks Left</label>
-                        <input class="form-control" type="number" step="1" id="player_stocks_0" name="players[data][0][stocks]" value="">
-                    </div>
+                        <div class="form-check">
+                            <label for="player_winner_0">
+                                <input id="player_winner_0" type="checkbox" name="winner" value="0" class="form-check-input"/>
+                                P1 Winner*
+                            </label>
+                        </div>
+                    </fieldset>
                 </div>
                 <div class="js-player-row">
-                    <h3>Player 2</h3>
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-sm">
-                                <label for="player_user_1">Tag*</label>
-                                <select id="player_user_1" data-src="users" name="players[user_id][]" class="form-control">
-                                    <option></option>
-                                </select>
-                            </div>
-                            <div class="col-sm">
-                                <label for="player_character_1">Character*</label>
-                                <select id="player_character_1" data-src="characters" name="players[character_id][]" class="form-control">
-                                    <option></option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-sm">
-                                <label for="player_team_1">Team</label>
-                                <select id="player_team_1" data-src="teams" name="players[team_id][]" class="form-control">
-                                    <option></option>
-                                </select>
-                            </div>
-                            <div class="col-sm">
-                                <label for="player_winner_1">Winner*</label>
-                                <input id="player_winner_1" type="checkbox" name="winner" value="1" class="form-control"/>
+                    <fieldset>
+                        <legend>Player 2</legend>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-sm">
+                                    <label for="player_user_1">Tag*</label>
+                                    <select id="player_user_1" data-src="users" name="players[user_id][]" class="form-control">
+                                        <option></option>
+                                    </select>
+                                </div>
+                                <div class="col-sm">
+                                    <label for="player_character_1">Character*</label>
+                                    <select id="player_character_1" data-src="characters" name="players[character_id][]" class="form-control">
+                                        <option></option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="player_stocks_1">Stocks Left</label>
-                        <input class="form-control" type="number" step="1" id="player_stocks_1" name="players[data][1][stocks]" value="">
-                    </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-sm">
+                                    <label for="player_team_1">Team</label>
+                                    <select id="player_team_1" data-src="teams" name="players[team_id][]" class="form-control">
+                                        <option></option>
+                                    </select>
+                                </div>
+                                <div class="col-sm">
+                                    <div class="form-group">
+                                        <label for="player_stocks_1">Stocks Left</label>
+                                        <input class="form-control" type="number" step="1" id="player_stocks_1" name="players[data][1][stocks]" value="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-check">
+                            <label for="player_winner_2">
+                                <input id="player_winner_1" type="checkbox" name="winner" value="1" class="form-check-input"/>
+                                P2 Winner*
+                            </label>
+                        </div>
+                    </fieldset>
                 </div>
             </fieldset>
             <div class="form-group">
                 <input class="btn btn-outline-primary" type="submit" value="Submit">
             </div>
         </form>
-    </div>
-    <div class="col-sm">
     </div>
 </div>
 <script type="text/javascript" src="/fragments/matches/add.js"></script>

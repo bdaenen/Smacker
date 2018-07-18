@@ -81,13 +81,16 @@
         return config.apiHost + config.endpoints[router][route];
       },
       loadPage: function(path, data, callback) {
+        if (path === '/login/login') {
+          return loadPage.call(this, '/login/login');
+        }
         this.isAuthenticated(function(authenticated){
           if (authenticated) {
             loadPage.call(this, path, data, callback);
           }
           else {
             loadPage.call(this, '/login/login');
-            setTimeout(function(){this.showMessage('info', 'You were logged out. Please log in to continue.')}.bind(this), 100);
+            setTimeout(function(){this.showMessage('info', 'Please log in to continue.')}.bind(this), 100);
           }
         }.bind(this))
       },
