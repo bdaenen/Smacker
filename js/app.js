@@ -1,4 +1,4 @@
-(function() {
+(function($) {
     'use strict';
     var config = window.config;
     var _isLoading = false;
@@ -38,10 +38,14 @@
         }
         return null;
       },
-      apiGet: function(router, route, callback) {
+      apiGet: function(router, route, params, callback) {
+        if (arguments.length === 3) {
+          return this.apiGet(router, route, null, params);
+        }
         this.clearMessages();
         $.ajax({
           url: this.getEndpointUrl(router, route),
+          data: params || {},
           method: 'get',
           xhrFields: {withCredentials: true},
           crossDomain: true
@@ -61,7 +65,7 @@
           data: JSON.stringify(data),
           method: 'post',
           dataType: 'json',
-          contentType: "application/json; charset=utf-8",
+          contentType: 'application/json; charset=utf-8',
           crossDomain: true
         }).done(callback)
           .fail(function(){
@@ -69,16 +73,16 @@
           });
       },
       getStages: function(callback) {
-        this.apiGet('stages', 'list', callback);
+        this.apiGet('stages', 'list', {order: 'name', pageSize: 100}, callback);
       },
       getCharacters: function(callback) {
-        this.apiGet('characters', 'list', callback);
+        this.apiGet('characters', 'list', {order: 'name', pageSize: 100}, callback);
       },
       getUsers: function(callback) {
-        this.apiGet('users', 'list', callback);
+        this.apiGet('users', 'list', {order: 'tag'}, callback);
       },
       getTeams: function(callback) {
-        this.apiGet('teams', 'list', callback);
+        this.apiGet('teams', 'list', {order: 'name'}, callback);
       },
       getEndpointUrl: function(router, route) {
         return config.apiHost + config.endpoints[router][route];
@@ -181,4 +185,4 @@
     !_isLoading && app.handleHashChange();
 
     window.app = app;
-}());
+}(window.jQuery));
