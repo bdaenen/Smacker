@@ -30,7 +30,7 @@
                     <div class="col-sm">
                         <div class="form-group">
                             <label for="match_stocks">Stocks*</label>
-                            <input class="form-control" type="number" required id="match_stocks" name="match[stocks]" value="3">
+                            <input class="form-control" type="number" min="0" required id="match_stocks" name="match[stocks]" value="3">
                         </div>
                     </div>
                 </div>
@@ -80,7 +80,7 @@
                             <div class="col-sm">
                                 <div class="form-group">
                                     <label for="player_stocks_0">Stocks Left*</label>
-                                    <input class="form-control" required type="number" step="1" id="player_stocks_0" name="players[data][0][stocks]" value="0">
+                                    <input class="form-control" required type="number" min="0" step="1" id="player_stocks_0" name="players[data][0][stocks]" value="0">
                                 </div>
                             </div>
                         </div>
@@ -125,7 +125,7 @@
                             <div class="col-sm">
                                 <div class="form-group">
                                     <label for="player_stocks_1">Stocks Left*</label>
-                                    <input class="form-control" required type="number" step="1" id="player_stocks_1" name="players[data][1][stocks]" value="0">
+                                    <input class="form-control" required type="number" min="0" step="1" id="player_stocks_1" name="players[data][1][stocks]" value="0">
                                 </div>
                             </div>
                         </div>
