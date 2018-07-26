@@ -50,7 +50,15 @@
           xhrFields: {withCredentials: true},
           crossDomain: true
         })
-          .done(callback)
+          .done(function(data, textStatus, jqXHR){
+            if(data.authenticated !== undefined && data.authenticated === false && data.user !== undefined && data.user === null) {
+              clearUser();
+              this.loadPage('/login/login');
+            }
+            else {
+              callback(data, textStatus, jqXHR);
+            }
+          }.bind(this))
           .fail(function(xhr, status, error){
             if (status == 'error') {
               clearUser();

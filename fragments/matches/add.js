@@ -37,6 +37,65 @@
     });
   });
 
+  /**
+   * @type {Function}
+   * Show/Hide the teams input fields if it's (not) a team match.
+   */
+  var updateTeamDisplay = function (){
+    var $this = $(this);
+    if ($this.prop('checked')) {
+      $form.find('[data-src="teams"]').closest('.col-sm').show();
+    }
+    else {
+      $form.find('[data-src="teams"]').closest('.col-sm').hide();
+    }
+  }.bind($form.find('#is_team'));
+
+  var $playerStocks = $form.find('[id*="player_stocks_"]');
+  var $playerWinner = $form.find('[id*="player_winner_"]');
+
+  /**
+   * @type {Function}
+   */
+  var updateStockFields = function(){
+    var $maxStocks = $(this);
+    var $stockFields = $playerStocks;
+    $stockFields.attr('max', $maxStocks.val());
+    $stockFields.each(function(){
+      var $this = $(this);
+      if ($this.val() > $maxStocks.val()) {
+        $this.val($maxStocks.val());
+      }
+    });
+  }.bind($form.find('#match_stocks'));
+
+  $playerStocks.on('change', function() {
+    var highestVal = 0;
+    var equalValue = 0;
+    $playerStocks.each(function(i){
+      var $this = $(this);
+      if ($this.val() > highestVal) {
+        highestVal = $this.val();
+        $playerWinner.prop('checked', false);
+        $playerWinner.eq(i).prop('checked', true)
+      }
+      else if ($this.val() === highestVal) {
+        equalValue = $this.val();
+      }
+    });
+
+    if (equalValue) {
+      $playerWinner.prop('checked', false);
+    }
+  });
+
+
+  $form.find('#is_team').on('change', updateTeamDisplay);
+  updateTeamDisplay();
+
+  $form.find('#match_stocks').on('input', updateStockFields);
+  updateStockFields();
+
   $form.on('submit', function(e) {
     e.preventDefault();
     var data = $(this).serializeObject();
