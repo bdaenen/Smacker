@@ -102,7 +102,12 @@ h2:before, h3:before, h4:before, h5:before, h6:before {
 }
 
 input[type="checkbox"] {
-  display: none;
+  opacity: 0;
+  position: absolute;
+}
+
+input[type="checkbox"]:focus + label:before {
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 input[type="checkbox"] + label {
