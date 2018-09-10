@@ -20,7 +20,8 @@
         },
         users: {
           list: '/users',
-          add: '/users/add'
+          add: '/users/add',
+          change_password: '/users/change_password'
         },
         teams: {
           list: '/teams'
