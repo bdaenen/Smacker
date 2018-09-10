@@ -60,7 +60,7 @@
             }
           }.bind(this))
           .fail(function(xhr, status, error){
-            if (status == 'error') {
+            if (status == 'error' && error === 'Forbidden') {
               clearUser();
               this.loadPage('/login/login');
             }
@@ -76,9 +76,14 @@
           contentType: 'application/json; charset=utf-8',
           crossDomain: true
         }).done(callback)
-          .fail(function(){
-            this.showMessage('danger', 'Something went wrong. The submitted data was probably not saved.')
-          });
+          .fail(function(xhr, status, error){
+            if (xhr.responseJSON && xhr.responseJSON.error) {
+                this.showMessage('danger', xhr.responseJSON.error);
+            }
+            else {
+                this.showMessage('danger', 'Something went wrong. The submitted data was probably not saved.')
+            }
+          }.bind(this));
       },
       getStages: function(callback) {
         this.apiGet('stages', 'list', {order: 'name', pageSize: 100}, callback);
@@ -134,7 +139,6 @@
         this.$mainContent.find('.alert').remove();
       },
       saveMatch: function(data, callback) {
-        console.log(data);
         this.apiPost('matches', 'add', data, callback);
       }
     };
