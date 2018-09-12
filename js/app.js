@@ -56,7 +56,7 @@
               this.loadPage('/login/login');
             }
             else {
-              callback(data, textStatus, jqXHR);
+              callback ? callback(data, textStatus, jqXHR) : null;
             }
           }.bind(this))
           .fail(function(xhr, status, error){
@@ -75,7 +75,7 @@
           dataType: 'json',
           contentType: 'application/json; charset=utf-8',
           crossDomain: true
-        }).done(callback)
+        }).done(callback || function(){})
           .fail(function(xhr, status, error){
             if (xhr.responseJSON && xhr.responseJSON.error) {
                 this.showMessage('danger', xhr.responseJSON.error);
