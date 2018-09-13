@@ -76,7 +76,7 @@
       var frag = document.createDocumentFragment();
       var i = 0;
 
-      var pages = Math.ceil(matches.total / pageSize) + 100;
+      var pages = Math.ceil(matches.total / pageSize);
       if (pages > 1) {
         i = Math.max(currentPage - pagerOffset, 1);
         frag.appendChild(createPageItem('&laquo;', currentPage-1, (currentPage===1) ? 'disabled' : ''));
