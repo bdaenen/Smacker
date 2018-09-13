@@ -102,14 +102,14 @@
       },
       loadPage: function(path, data, callback) {
         if (path === '/login/login') {
-          return loadPage.call(this, '/login/login');
+          return _loadPage.call(this, '/login/login');
         }
         this.isAuthenticated(function(authenticated){
           if (authenticated) {
-            loadPage.call(this, path, data, callback);
+            _loadPage.call(this, path, data, callback);
           }
           else {
-            loadPage.call(this, '/login/login');
+            _loadPage.call(this, '/login/login');
             setTimeout(function(){this.showMessage('info', 'Please log in to continue.')}.bind(this), 100);
           }
         }.bind(this))
@@ -157,7 +157,7 @@
       sessionStorage.removeItem('user');
     }
 
-    function loadPage(path, data, callback) {
+    function _loadPage(path, data, callback) {
         data = data || null;
         callback = callback || null;
 

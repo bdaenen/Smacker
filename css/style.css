@@ -155,3 +155,125 @@ input[type="checkbox"] + label:after {
 input[type="checkbox"]:checked + label:after {
   opacity: 1;
 }
+
+
+.dropdown-menu.dark {
+  background-color: var(--gray);
+}
+
+.dropdown-menu.dark .dropdown-item {
+  color: var(--teal);
+}
+
+.dropdown-menu.dark .dropdown-item:hover,
+.dropdown-menu.dark .dropdown-item:focus {
+  background-color: var(--teal);
+  color: var(--gray);
+}
+
+.table {
+  display: table;
+  width: 100%;
+}
+
+a {
+  color: var(--teal);
+}
+
+a:hover,
+a:focus {
+  color: var(--green);
+}
+
+.tr {
+  vertical-align: middle;
+  display: table-row;
+  width: 100%;
+}
+
+
+.tr:first-child .td {
+  border-right: 0;
+}
+
+.tr:nth-child(2n) {
+  background-color: var(--gray);
+}
+
+.actions a {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.actions a:last-child {
+  margin-right: 0;
+}
+
+.td {
+  vertical-align: middle;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  border-right: 1px solid rgba(255, 255, 255, 0.4);
+  text-align: center;
+  display: table-cell;
+  padding: 10px 5px;
+}
+
+.td:last-child {
+  border-right: 0;
+}
+
+.page-link {
+  color: var(--teal);
+}
+
+.page-item.active .page-link {
+  background-color: var(--teal);
+  border-color: var(--teal);
+}
+
+@media (max-width: 991px) {
+  .table, .tr {
+    display: block;
+    width: auto;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+    font-size: 0;
+  }
+  .table .td {
+    display: inline-block;
+    width: 49%;
+    border-bottom-color: rgba(255, 255, 255, 0.2);
+    font-size: 1rem;
+  }
+  .table .td {
+    border-right-color: rgba(255, 255, 255, 0.2);
+    min-height: 50px;
+  }
+  .table .td:nth-child(2n) {
+    border-right: 0;
+  }
+  .tr.d-lg-table-row {
+    display: none;
+  }
+  .actions {
+    height: 61px;
+    line-height: 40px;
+  }
+  .actions .material-icons {
+    font-size: 1.5rem;
+    line-height: 40px;
+  }
+  .actions > :first-child {
+    margin-right: 15px;
+  }
+  .actions > :last-child {
+    margin-left: 15px;
+  }
+  .actions a {
+    color: var(--white);
+    border-radius: 100%;
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    background: var(--teal);
+  }
+}

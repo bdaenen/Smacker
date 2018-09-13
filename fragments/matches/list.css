@@ -1,0 +1,25 @@
+.id {
+  width: 40px;
+}
+.actions {
+  width: 100px;
+}
+.p1, .p2, .p3, .p4 {
+  width: 200px;
+}
+.stage {
+  width: 150px;
+}
+.teams {
+  width: 5px;
+}
+.date {
+  white-space: nowrap;
+}
+
+.p1, .p2, .p3, .p4 {
+  opacity: 0.6;
+}
+.winner {
+  opacity: 1;
+}

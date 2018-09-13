@@ -1,28 +1,48 @@
+<link rel="stylesheet" href="/fragments/matches/list.css" type="text/css">
 <h2>Matches</h2>
 <template id="list-entry">
-	<li>
-		<div class="col-sm id"></div>
-		<div class="col-sm p1"></div>
-		<div class="col-sm p2"></div>
-		<div class="col-sm p3"></div>
-		<div class="col-sm p4"></div>
-		<div class="col-sm stage"></div>
-		<div class="col-sm teams"></div>
-		<div class="col-sm date"></div>
-	</li>
+    <div class="tr">
+        <div class="td d-lg-none actions">Actions</div>
+        <div class="td actions">
+            <a href="#edit" class="edit"><span class="material-icons">edit</span></a><a href="#delete" class="delete"><span class="material-icons">delete</span></a>
+        </div>
+        <div class="td d-lg-none id">ID</div>
+        <div class="td id js-id"></div>
+        <div class="td d-lg-none p1">P1</div>
+        <div class="td p1 js-p1"></div>
+        <div class="td d-lg-none p2">P2</div>
+        <div class="td p2 js-p2"></div>
+        <div class="td d-lg-none p3">P3</div>
+        <div class="td p3 js-p3"></div>
+        <div class="td d-lg-none p4">P4</div>
+        <div class="td p4 js-p4"></div>
+        <div class="td d-lg-none stage">Stage</div>
+        <div class="td stage js-stage"></div>
+        <div class="td d-lg-none teams">Teams</div>
+        <div class="td teams js-teams"></div>
+        <div class="td d-lg-none date">Date</div>
+        <div class="td date js-date"></div>
+    </div>
 </template>
-<div class="row">
-	<ul class="match-list">
-		<li>
-			<div class="col-sm">ID</div>
-			<div class="col-sm">P1</div>
-			<div class="col-sm">P2</div>
-			<div class="col-sm">P3</div>
-			<div class="col-sm">P4</div>
-			<div class="col-sm">Stage</div>
-			<div class="col-sm">Teams</div>
-			<div class="col-sm">Date</div>
-		</li>
-	</ul>
-</div>
+
+<template id="page-item">
+    <li class="page-item">
+        <a class="page-link js-page" href="#"></a>
+    </li>
+</template>
+    <div class="match list table">
+        <div class="tr d-lg-table-row">
+            <div class="td actions">Actions</div>
+            <div class="td id">ID</div>
+            <div class="td winner p1">P1</div>
+            <div class="td winner p2">P2</div>
+            <div class="td winner p3">P3</div>
+            <div class="td winner p4">P4</div>
+            <div class="td stage">Stage</div>
+            <div class="td teams">Teams</div>
+            <div class="td date">Date</div>
+        </div>
+    </div>
+    <ul class="pagination justify-content-center">
+    </ul>
 <script type="text/javascript" src="/fragments/matches/list.js"></script>
