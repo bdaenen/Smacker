@@ -2,13 +2,16 @@
     'use strict';
     var list = document.querySelector('.match.list');
     var template = document.querySelector('#list-entry');
-    var queryParams = new URLSearchParams(document.location.search);
-    var currentPage = queryParams.has('page') ? parseInt(queryParams.get('page'), 10) : 1;
+    var currentPage = app.getQueryParam('page');
+    currentPage = currentPage ? parseInt(currentPage, 10) : 1;
     var pageSize = 20;
     var pagerOffset = 2;
 
+    /**
+     * bind click events
+     **/
     function bindPageEvents() {
-      document.querySelectorAll('.pagination a').forEach(function(el){
+      document.querySelectorAll('.pagination a').forEach(function(el) {
         el.addEventListener('click', function(e) {
           e.preventDefault();
           history.pushState({}, window.title, el.href + window.location.hash);
@@ -18,6 +21,21 @@
       });
     }
 
+    /**
+     *
+     */
+    function bindActions() {
+      document.querySelectorAll('.actions a').forEach(function(el){
+        var action = el.dataset.action;
+        el.addEventListener('click', function(e) {
+
+        });
+      });
+    }
+
+    /**
+     * load items for current page
+     */
     function loadItems() {
       app.apiGet('matches', 'list', {
         page: currentPage,
@@ -27,8 +45,15 @@
       }, renderList);
     }
 
+    /**
+     * render the list based on the results
+     * @param matches
+     */
     function renderList(matches) {
-        list.innerHTML = '';
+        list.querySelectorAll('.tbody').forEach(function(el){
+          el.remove();
+        });
+
         renderPager(matches);
         var frag = document.createDocumentFragment();
         matches.data.forEach(function(data){
@@ -42,20 +67,23 @@
             var domP2 = item.querySelector('.js-p2');
             var domP3 = item.querySelector('.js-p3');
             var domP4 = item.querySelector('.js-p4');
+
+            item.querySelector('.edit').href = '/?id=' + data.match.id + '#/matches/add';
+            item.querySelector('.delete').href = '/?id=' + data.match.id + '#/matches/delete';
             item.querySelector('.js-id').innerText = data.match.id;
-            domP1.innerText = p1.user.tag + '(' + p1.character.name + ')';
+            domP1.innerText = p1.user.tag + ', ' + p1.character.name + (p1.data.stocks ? ', ' + p1.data.stocks : '');
             p1.is_winner && (domP1.classList.add('winner'));
-            domP2.innerText = p2.user.tag + '(' + p2.character.name + ')';
+            domP2.innerText = p2.user.tag + ', ' + p2.character.name + (p2.data.stocks ? ', ' + p2.data.stocks : '');
             p2.is_winner && (domP2.classList.add('winner'));
 
 
             if (p3) {
-              domP3.innerText = p3.user.tag + '(' + p3.character.name + ')';
+              domP3.innerText = p3.user.tag + ', ' + p3.character.name + (p3.data.stocks ? ', ' + p3.data.stocks : '');
               p3.is_winner && (domP3.classList.add('winner'));
             }
 
             if (p4) {
-              domP4.innerText = p4.user.tag + '(' + p4.character.name + ')';
+              domP4.innerText = p4.user.tag + ', ' + p4.character.name + (p4.data.stocks ? ', ' + p4.data.stocks : '');
               p4.is_winner && (domP4.classList.add('winner'));
 
             }
@@ -70,6 +98,10 @@
         list.appendChild(frag);
     }
 
+    /**
+     * Render the pager
+     * @param matches
+     */
     function renderPager(matches) {
       var list = document.querySelector('.pagination');
       list.innerHTML = '';
@@ -99,6 +131,13 @@
       }
     }
 
+    /**
+     * Create a single pager button
+     * @param text
+     * @param page
+     * @param state
+     * @returns {ActiveX.IXMLDOMNode | Node}
+     */
     function createPageItem(text, page, state) {
       var template = document.querySelector('#page-item');
       var item = template.content.cloneNode(true);

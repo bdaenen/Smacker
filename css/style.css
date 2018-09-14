@@ -277,3 +277,24 @@ a:focus {
     background: var(--teal);
   }
 }
+
+.pagination .page-link {
+  background-color: var(--dark);
+}
+
+.pagination .page-item.active .page-link {
+  background-color: var(--teal);
+  color: var(--dark);
+}
+
+.pagination .page-link:hover,
+.pagination .page-link:focus {
+  color: var(--dark);
+  background-color: rgba(32, 201, 151, 0.5);
+  border-color: var(--teal);
+}
+
+.pagination .page-item.disabled .page-link{
+  background-color: var(--dark);
+  color: var(--gray);
+}

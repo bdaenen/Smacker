@@ -98,7 +98,20 @@
         this.apiGet('teams', 'list', {order: 'name'}, callback);
       },
       getEndpointUrl: function(router, route) {
-        return config.apiHost + config.endpoints[router][route];
+        if (route && route.includes('/')) {
+          var routeParts = route.split('/');
+          var potentialId = routeParts.pop();
+          var id = null;
+          if (parseInt(potentialId, 10)) {
+            route = routeParts.join('/');
+            id = potentialId;
+          }
+        }
+        return config.apiHost + config.endpoints[router][route] + (id ? '/' + id : '');
+      },
+      getQueryParam: function(name) {
+        var queryParams = new URLSearchParams(document.location.search);
+        return queryParams.has(name) ? queryParams.get(name) : null;
       },
       loadPage: function(path, data, callback) {
         if (path === '/login/login') {

@@ -2,6 +2,10 @@
   'use strict';
   var $form = $('#add_match_form');
   var app = window.app;
+  var matchId = app.getQueryParam('id');
+  if (matchId) {
+    matchId = parseInt(matchId, 10);
+  }
 
   $form.find('#match_date').val(new Date().toISOString().substr(0, 10));
   $form.find('[data-src="stages"]').each(function(){
@@ -123,4 +127,30 @@
     });
 
   });
+
+  function prefillData() {
+    app.apiGet('matches', 'detail/' + matchId, function(data) {
+      var data = data.data[0];
+      if (data) {
+        var match_date = document.querySelector('#match_date');
+        var is_team = document.querySelector('#is_team');
+        var match_stage = document.querySelector('#match_stage');
+        var match_stocks = document.querySelector('#match_stocks');
+        var match_time = document.querySelector('#match_time');
+        var match_time_remaining = document.querySelector('#match_time_remaining');
+
+        match_date.value = data.match.date;
+        is_team.checked = data.match.is_team;
+        match_stage.querySelector('option[value="' + data.match.stage.id + '"]').selected = true;
+        match_stocks.value  = data.match.stocks;
+        match_time.value  = data.match.time;
+        match_time_remaining.value  = data.match.time_remaining;
+        document.querySelector('#match_date').value = data.match.date;
+      }
+    });
+  }
+
+  if (matchId) {
+    prefillData();
+  }
 }());

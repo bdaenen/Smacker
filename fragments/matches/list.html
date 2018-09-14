@@ -1,20 +1,20 @@
 <link rel="stylesheet" href="/fragments/matches/list.css" type="text/css">
 <h2>Matches</h2>
 <template id="list-entry">
-    <div class="tr">
+    <div class="tr tbody">
         <div class="td d-lg-none actions">Actions</div>
         <div class="td actions">
-            <a href="#edit" class="edit"><span class="material-icons">edit</span></a><a href="#delete" class="delete"><span class="material-icons">delete</span></a>
+            <a href="#edit" class="edit" data-action="edit"><span class="material-icons">edit</span></a><a href="#delete" class="delete" data-action="delete"><span class="material-icons">delete</span></a>
         </div>
         <div class="td d-lg-none id">ID</div>
         <div class="td id js-id"></div>
-        <div class="td d-lg-none p1">P1</div>
+        <div class="td d-lg-none p1 winner">P1</div>
         <div class="td p1 js-p1"></div>
-        <div class="td d-lg-none p2">P2</div>
+        <div class="td d-lg-none p2 winner">P2</div>
         <div class="td p2 js-p2"></div>
-        <div class="td d-lg-none p3">P3</div>
+        <div class="td d-lg-none p3 winner">P3</div>
         <div class="td p3 js-p3"></div>
-        <div class="td d-lg-none p4">P4</div>
+        <div class="td d-lg-none p4 winner">P4</div>
         <div class="td p4 js-p4"></div>
         <div class="td d-lg-none stage">Stage</div>
         <div class="td stage js-stage"></div>
@@ -31,7 +31,7 @@
     </li>
 </template>
     <div class="match list table">
-        <div class="tr d-lg-table-row">
+        <div class="tr d-lg-table-row thead">
             <div class="td actions">Actions</div>
             <div class="td id">ID</div>
             <div class="td winner p1">P1</div>
@@ -42,6 +42,7 @@
             <div class="td teams">Teams</div>
             <div class="td date">Date</div>
         </div>
+        <div class="match-list-body"></div>
     </div>
     <ul class="pagination justify-content-center">
     </ul>
