@@ -1,8 +1,7 @@
-(function() {
+(function(smack, $) {
     'use strict';
-    var app = window.app;
-    var user = app.getUser();
+    var user = smack.getUser();
     if (user) {
-        app.$mainContent.find('#user-tag').text(', ' + user.tag);
+        smack.$mainContent.find('#user-tag').text(', ' + user.tag);
     }
-}());
+}(window.smack, window.jQuery));

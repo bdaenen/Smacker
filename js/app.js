@@ -1,10 +1,11 @@
-(function($) {
+(function($, smackConfig) {
     'use strict';
-    var config = window.config;
     var _isLoading = false;
     var _ignoreHashChange = false;
 
-    var app = {
+    var smack = {
+      dom$: document.querySelector.bind(document),
+      dom$All: document.querySelectorAll.bind(document),
       $mainContent: $('.js-main'),
       isAuthenticated: function(callback) {
         if (this.getUser()) {
@@ -107,7 +108,7 @@
             id = potentialId;
           }
         }
-        return config.apiHost + config.endpoints[router][route] + (id ? '/' + id : '');
+        return smackConfig.apiHost + smackConfig.endpoints[router][route] + (id ? '/' + id : '');
       },
       getQueryParam: function(name) {
         var queryParams = new URLSearchParams(document.location.search);
@@ -152,7 +153,13 @@
         this.$mainContent.find('.alert').remove();
       },
       saveMatch: function(data, callback) {
-        this.apiPost('matches', 'add', data, callback);
+        if (data.match.id) {
+          debugger;
+          this.apiPost('matches', 'update', data, callback);
+        }
+        else {
+          this.apiPost('matches', 'add', data, callback);
+        }
       }
     };
 
@@ -196,7 +203,7 @@
       setUser(JSON.parse(sessionStorage.getItem('user')));
     }
 
-    Object.defineProperty(app, 'user', {
+    Object.defineProperty(smack, 'user', {
       get: function() {
         var user = sessionStorage.getItem('user');
         if (!user) {
@@ -206,8 +213,8 @@
       }
     });
 
-    window.onhashchange = app.handleHashChange.bind(app);
-    !_isLoading && app.handleHashChange();
+    window.onhashchange = smack.handleHashChange.bind(smack);
+    !_isLoading && smack.handleHashChange();
 
-    window.app = app;
-}(window.jQuery));
+    window.smack = smack;
+}(window.jQuery, smackConfig));

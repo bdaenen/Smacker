@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    window.config = {
+    window.smackConfig = {
       apiHost: 'https://smashtrack.benn0.be',
       endpoints: {
         login: {

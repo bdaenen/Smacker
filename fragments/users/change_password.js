@@ -1,7 +1,6 @@
-(function() {
+(function(smack, $) {
     'use strict';
     var $form = $('#change_password_form');
-    var app = window.app;
     var $password = $('#password');
     var $passwordConfirm = $('#password_confirm');
 
@@ -31,13 +30,13 @@
             data.password = data.password.trim();
         }
 
-        app.apiPost('users', 'change_password', data, function(resp){
+        smack.apiPost('users', 'change_password', data, function(resp){
             if (resp.success) {
-                app.loadPage('/users/change_password', null, function(){
-                    app.showMessage('success', 'Password changed!');
+                smack.loadPage('/users/change_password', null, function(){
+                    smack.showMessage('success', 'Password changed!');
                     window.scrollTo(0, 0);
                 });
             }
         });
     });
-}());
+}(window.smack, window.jQuery));

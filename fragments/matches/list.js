@@ -1,8 +1,8 @@
-(function () {
+(function (smack, $) {
     'use strict';
-    var list = document.querySelector('.match.list');
-    var template = document.querySelector('#list-entry');
-    var currentPage = app.getQueryParam('page');
+    var list = smack.dom$('.match.list');
+    var template = smack.dom$('#list-entry');
+    var currentPage = smack.getQueryParam('page');
     currentPage = currentPage ? parseInt(currentPage, 10) : 1;
     var pageSize = 20;
     var pagerOffset = 2;
@@ -11,7 +11,7 @@
      * bind click events
      **/
     function bindPageEvents() {
-      document.querySelectorAll('.pagination a').forEach(function(el) {
+      smack.dom$All('.pagination a').forEach(function(el) {
         el.addEventListener('click', function(e) {
           e.preventDefault();
           history.pushState({}, window.title, el.href + window.location.hash);
@@ -25,7 +25,7 @@
      *
      */
     function bindActions() {
-      document.querySelectorAll('.actions a').forEach(function(el){
+      smack.dom$All('.actions a').forEach(function(el){
         var action = el.dataset.action;
         el.addEventListener('click', function(e) {
 
@@ -37,7 +37,7 @@
      * load items for current page
      */
     function loadItems() {
-      app.apiGet('matches', 'list', {
+      smack.apiGet('matches', 'list', {
         page: currentPage,
         pageSize: pageSize,
         sort: 'match.id',
@@ -103,7 +103,7 @@
      * @param matches
      */
     function renderPager(matches) {
-      var list = document.querySelector('.pagination');
+      var list = smack.dom$('.pagination');
       list.innerHTML = '';
       var frag = document.createDocumentFragment();
       var i = 0;
@@ -139,7 +139,7 @@
      * @returns {ActiveX.IXMLDOMNode | Node}
      */
     function createPageItem(text, page, state) {
-      var template = document.querySelector('#page-item');
+      var template = smack.dom$('#page-item');
       var item = template.content.cloneNode(true);
       var jsPage = item.querySelector('.js-page');
       jsPage.innerHTML = text;
@@ -155,4 +155,4 @@
 
     loadItems();
 
-}());
+}(window.smack, window.jQuery));
