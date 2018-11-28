@@ -13,7 +13,8 @@
           add: '/matches/add'
         },
         characters: {
-          list: '/characters'
+          list: '/characters',
+          byUser: '/stats/user/characters'
         },
         stages: {
           list: '/stages'

@@ -56,6 +56,17 @@ input[type='number'] {
 .btn-primary {
   background: var(--teal);
   border-color: var(--teal);
+  position: relative;
+  transition: all 200ms;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary:active{
+  background: var(--teal) !important;
+  border-color: var(--teal) !important;
+  filter: contrast(130%) !important;
 }
 
 .btn-outline-primary {
