@@ -1,6 +1,5 @@
-(function() {
+(function(app, $) {
   'use strict';
-  var app = window.app;
   $('#login_form').on('submit', function(e) {
     e.preventDefault();
 
@@ -11,4 +10,4 @@
       }
     });
   })
-}());
+}(window.app, window.jQuery));

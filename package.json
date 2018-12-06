@@ -4,10 +4,19 @@
   "description": "",
   "main": "index.html",
   "dependencies": {
+    "autoprefixer": "^9.4.2",
     "bootstrap": "^4.1.2",
     "form-serializer": "^2.5.0",
+    "gulp": "^4.0.0",
+    "gulp-cli": "^2.0.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-postcss": "^8.0.0",
+    "gulp-sass": "^4.0.2",
     "jquery": "^3.3.1",
-    "popper.js": "^1.14.3"
+    "popper.js": "^1.14.3",
+    "postcss-uncss": "^0.16.1",
+    "sass-module-importer": "^1.4.0",
+    "uncss": "^0.16.2"
   },
   "devDependencies": {},
   "scripts": {

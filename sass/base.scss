@@ -1,0 +1,23 @@
+body {
+  //background: var(--dark);
+  background: var(--dark);
+  color: var(--light);
+}
+
+h2, h3, h4, h5, h6 {
+  display: inline-block;
+  /*border-left: 2px solid var(--teal);*/
+  margin-bottom: 20px;
+  position: relative;
+  :before {
+    background: var(--teal);
+    content: '';
+    display: block;
+    position: absolute;
+    height: 2px;
+    width: 20px;
+    left: 0;
+    bottom: -3px;
+
+  }
+}
