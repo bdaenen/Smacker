@@ -2,12 +2,12 @@
   transition: all 200ms;
   background: rgba(255, 255, 255, 0.1);
   /*background: transparent;*/
-  border: 1px solid var(--teal);
+  border: 1px solid var(--white);
   color: var(--white);
   &:focus,
   &:hover {
     background: rgba(255, 255, 255, 0.2);
-    border: 1px solid var(--teal);
+    border: 1px solid var(--white);
     color: var(--white);
   }
 }
@@ -54,7 +54,6 @@ input[type='number'] {
   background: rgba(255, 255, 255, 0.2);
 }
 
-
 .form-check {
   display: flex;
   align-items: center;
@@ -89,7 +88,7 @@ input[type="checkbox"] {
     display: inline-block;
     width: 20px;
     height: 20px;
-    border: 1px solid var(--teal);
+    border: 1px solid var(--white);
     background-color: rgba(255, 255, 255, 0.1);
     border-radius: .25rem;
     vertical-align: middle;
@@ -101,8 +100,8 @@ input[type="checkbox"] {
     content: '';
     opacity: 0;
     transition: opacity 200ms;
-    border-right: 2px solid white;
-    border-bottom: 2px solid white;
+    border-right: 2px solid black;
+    border-bottom: 2px solid black;
     display: block;
     height: 12px;
     width: 7px;
@@ -118,7 +117,7 @@ input[type="checkbox"] {
     & + label {
       &:before {
         content: '';
-        background-color: var(--teal);
+        background-color: var(--white);
       }
       &:after {
         opacity: 1;

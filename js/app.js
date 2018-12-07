@@ -98,7 +98,7 @@
         this.apiGet('teams', 'list', {order: 'name'}, callback);
       },
       getCharactersForUser: function(userId, callback) {
-        this.apiGet('characters', 'byUser', {order: 'count', orderDir: 'desc', userId: userId}, callback)
+        this.apiGet('characters', 'byUser', {order: 'count', orderDir: 'desc', userId: userId, pageSize: 100}, callback)
       },
       getEndpointUrl: function(router, route) {
         return config.apiHost + config.endpoints[router][route];

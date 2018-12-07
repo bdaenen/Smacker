@@ -19,7 +19,7 @@
       $form.find('#match_stocks').on('input', updateStockFields);
 
       $form.on('submit', submitForm);
-      
+
       addRow();
       addRow();
 
@@ -37,7 +37,7 @@
           $(this).prev().prop('checked', !$(this).prop('checked'));
       });
   }
-  
+
   function submitForm(e) {
       e.preventDefault();
       var data = $(this).serializeObject();
@@ -65,7 +65,7 @@
           }
       });
   }
-    
+
   /**
    * @type {Function}
    * Show/Hide the teams input fields if it's (not) a team match.
@@ -156,7 +156,15 @@
                 });
             });
         });
-      
+
+      $playerRow.find('[data-src="characters"]').on('change', function() {
+         var $this = $(this);
+         var charname = $this.find('option:selected').text();
+         charname = charname.toLowerCase().trim().replace(/\s/g, "").replace(/\./g, "");
+          $this.closest('.player-row').get(0).style.setProperty("--white", 'var(--' + 'color-' + charname);
+          $this.closest('.player-row').find('*').css('border-width', '2px');
+      });
+
       $playerRow.find('[data-src="teams"]').each(function(){
           var $select = $(this);
           app.getTeams(function(teams){
@@ -165,7 +173,7 @@
               })
           });
       });
-      
+
       $playerRow.find('[id*="player_stocks_"]').on('change', function() {
           var highestVal = 0;
           var equalValue = 0;
@@ -186,6 +194,6 @@
           }
       });
   }
-  
+
   init();
 }());
