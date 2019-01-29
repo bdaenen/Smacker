@@ -161,8 +161,8 @@
          var $this = $(this);
          var charname = $this.find('option:selected').text();
          charname = charname.toLowerCase().trim().replace(/\s/g, "").replace(/\./g, "");
-          $this.closest('.player-row').get(0).style.setProperty("--white", 'var(--' + 'color-' + charname);
-          $this.closest('.player-row').find('*').css('border-width', '2px');
+          $this.closest('.player-row').get(0).style.setProperty("--input-border", 'var(--' + 'color-' + charname + ')');
+          $this.closest('.player-row').get(0).style.setProperty("--checkbox-fill", 'var(--' + 'color-' + charname + ')');
       });
 
       $playerRow.find('[data-src="teams"]').each(function(){

@@ -16,10 +16,10 @@
          .pipe(
            postCss(
              [
-               uncss({
+              /* uncss({
                    html: htmlPaths,
                    htmlroot: __dirname
-               }),
+               }),*/
                autoprefixer()
              ]
            )
@@ -35,6 +35,10 @@
           require.resolve('form-serializer/dist/jquery.serialize-object.min.js'),
           require.resolve('popper.js/dist/umd/popper.min.js'),
           require.resolve('bootstrap/dist/js/bootstrap.js'),
+          require.resolve('@coreui/coreui/dist/js/coreui-utilities.js'),
+          require.resolve('@coreui/coreui/dist/js/coreui.js'),
+          require.resolve('pace-progress/pace.min.js'),
+          require.resolve('perfect-scrollbar/dist/perfect-scrollbar.min.js'),
           'js/config.js',
           'js/app.js',
           'js/main.js',

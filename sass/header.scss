@@ -11,14 +11,13 @@ nav {
       margin-right: 10px;
     }
   }
-  img, svg {
-    height: 48px;
-  }
-  .smashball {
-    width: 48px;
-    * {
-      fill: var(--teal);
-    }
+}
+
+.navbar-nav .nav-link {
+  color: var(--text-color-light);
+  &:hover,
+  &:focus {
+    color: var(--text-color);
   }
 }
 
@@ -28,13 +27,14 @@ nav {
   z-index: 1;
 }
 
-nav > *:not(.header-logo) {
-  z-index: 1;
+.brand-title {
+  text-indent: -41px;
+  color: #FFF;
+  text-shadow: 1px 1px 0 #969696;
 }
 
-.navbar-brand {
-  margin-left: -40px;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 1);
+.app-header {
+  background: var(--dark);
 }
 
 .header-logo {

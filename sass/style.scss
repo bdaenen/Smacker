@@ -1,6 +1,11 @@
 @import './variables';
 @import 'character_colors';
 @import 'bootstrap/scss/bootstrap.scss';
+@import '@coreui/coreui/scss/coreui.scss';
+@import '@coreui/icons/scss/coreui-icons.scss';
+@import './coreui_variables';
+@import 'navigation';
 @import './base';
 @import './header';
+@import './sidebar';
 @import './forms';

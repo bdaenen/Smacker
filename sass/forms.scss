@@ -1,14 +1,14 @@
 .form-control {
   transition: all 200ms;
-  background: rgba(255, 255, 255, 0.1);
+  //background: rgba(255, 255, 255, 0.1);
   /*background: transparent;*/
-  border: 1px solid var(--white);
-  color: var(--white);
+  border: 1px solid var(--input-border);
+  color: var(--text-color-dark);
   &:focus,
   &:hover {
     background: rgba(255, 255, 255, 0.2);
-    border: 1px solid var(--white);
-    color: var(--white);
+    border: 1px solid var(--input-border);
+    color: var(--text-color-dark);
   }
 }
 option {
@@ -24,34 +24,6 @@ input::-webkit-inner-spin-button {
 
 input[type='number'] {
   -moz-appearance:textfield;
-}
-
-.btn-primary {
-  background: var(--teal);
-  border-color: var(--teal);
-  position: relative;
-  transition: all 200ms;
-}
-
-.btn-primary:hover,
-.btn-primary:focus,
-.btn-primary:active,
-.btn-primary:active{
-  background: var(--teal) !important;
-  border-color: var(--teal) !important;
-  filter: contrast(130%) !important;
-}
-
-.btn-outline-primary {
-  color: var(--white);
-  border-color: var(--teal);
-  background: rgba(255, 255, 255, 0.1);
-}
-.btn-outline-primary:hover,
-.btn-outline-primary:focus {
-  color: var(--white);
-  border-color: var(--teal);
-  background: rgba(255, 255, 255, 0.2);
 }
 
 .form-check {
@@ -88,7 +60,7 @@ input[type="checkbox"] {
     display: inline-block;
     width: 20px;
     height: 20px;
-    border: 1px solid var(--white);
+    border: 1px solid var(--input-border);
     background-color: rgba(255, 255, 255, 0.1);
     border-radius: .25rem;
     vertical-align: middle;
@@ -100,8 +72,9 @@ input[type="checkbox"] {
     content: '';
     opacity: 0;
     transition: opacity 200ms;
-    border-right: 2px solid black;
-    border-bottom: 2px solid black;
+    border-right: 2px solid var(--checkbox-fill);
+    border-bottom: 2px solid var(--checkbox-fill);
+    filter: invert(1);
     display: block;
     height: 12px;
     width: 7px;
@@ -117,7 +90,7 @@ input[type="checkbox"] {
     & + label {
       &:before {
         content: '';
-        background-color: var(--white);
+        background-color: var(--checkbox-fill);
       }
       &:after {
         opacity: 1;

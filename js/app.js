@@ -105,10 +105,12 @@
       },
       loadPage: function(path, data, callback) {
         if (path === '/login/login') {
+          $('.sidebar').css('display', 'none');
           return loadPage.call(this, '/login/login');
         }
         this.isAuthenticated(function(authenticated){
           if (authenticated) {
+            $('.sidebar').removeAttr('style');
             loadPage.call(this, path, data, callback);
           }
           else {
