@@ -86,7 +86,7 @@
           }.bind(this));
       },
       getStages: function(callback) {
-        this.apiGet('stages', 'list', {order: 'name', pageSize: 100}, callback);
+        this.apiGet('stages', 'list', {order: 'name', pageSize: 200}, callback);
       },
       getCharacters: function(callback) {
         this.apiGet('characters', 'list', {order: 'name', pageSize: 100}, callback);

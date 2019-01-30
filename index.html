@@ -33,6 +33,13 @@
             <a class="nav-link" href="https://smackerboard.benn0.be/" target="_blank">Leaderboards</a>
         </li>
     </ul>
+    <div class="theme-switcher" style="position: absolute; right: 15px;">
+        <label for="theme-switch" style="vertical-align: middle; height: 26px; margin-right: 5px;">Dark theme</label>
+        <label class="switch switch-primary" style="vertical-align: middle">
+            <input id="theme-switch" class="switch-input" type="checkbox" onchange="$('body').toggleClass('dark')">
+            <span class="switch-slider"></span>
+        </label>
+    </div>
     <!--<ul class="nav navbar-nav d-md-down-none">-->
         <!--<li class="nav-item px-3">-->
             <!--<a class="btn btn btn-outline-warning" href="https://coreui.io/support/">Contact &amp; Support</a>-->

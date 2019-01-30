@@ -72,9 +72,8 @@ input[type="checkbox"] {
     content: '';
     opacity: 0;
     transition: opacity 200ms;
-    border-right: 2px solid var(--checkbox-fill);
-    border-bottom: 2px solid var(--checkbox-fill);
-    filter: invert(1);
+    border-right: 2px solid var(--white);
+    border-bottom: 2px solid var(--white);
     display: block;
     height: 12px;
     width: 7px;

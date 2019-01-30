@@ -41,8 +41,6 @@
   function submitForm(e) {
       e.preventDefault();
       var data = $(this).serializeObject();
-      console.log(data);
-      debugger;
       var formattedData = {};
       formattedData.match = data.match;
       formattedData.players = [];
@@ -105,7 +103,11 @@
     rowHtml = rowHtml.replace(/\$PLAYER_COUNT\+1\$/g, count+1);
     rowHtml = rowHtml.replace(/\$PLAYER_COUNT\$/g, count);
     var $row = $(rowHtml);
-    $form.find('.player-row-wrapper').append($row);
+    var $rowWrapper = $form.find('.player-row-wrapper');
+    if (!(count % 2)) {
+        $rowWrapper.append($('<div>').addClass('row').addClass('js-player-card-row'));
+    }
+    $rowWrapper.find('.js-player-card-row').last().append($row);
     initPlayerRow($row);
 
     $playerWinner = $form.find('[id*="player_winner_"]');
@@ -118,7 +120,13 @@
      * Removes a player row
      */
   function removeRow() {
+      var $playerRow = $form.find('.js-player-row').last();
+      var $parentRow = $playerRow.closest('.js-player-card-row');
       $form.find('.js-player-row').last().remove();
+      if ($parentRow.is(':empty')) {
+          $parentRow.remove();
+      }
+
       $playerWinner = $form.find('[id*="player_winner_"]');
       $playerStocks = $form.find('[id*="player_stocks_"]');
       updateTeamDisplay();
@@ -154,6 +162,7 @@
                 characters.data.forEach(function(character) {
                     $select.append($('<option>').text(character.name).attr('value', character.id));
                 });
+                $select.trigger('change');
             });
         });
 
@@ -161,8 +170,7 @@
          var $this = $(this);
          var charname = $this.find('option:selected').text();
          charname = charname.toLowerCase().trim().replace(/\s/g, "").replace(/\./g, "");
-          $this.closest('.player-row').get(0).style.setProperty("--input-border", 'var(--' + 'color-' + charname + ')');
-          $this.closest('.player-row').get(0).style.setProperty("--checkbox-fill", 'var(--' + 'color-' + charname + ')');
+         $this.closest('.card-accent-character').get(0).style.setProperty("--color-character", 'var(--' + 'color-' + charname + ')');
       });
 
       $playerRow.find('[data-src="teams"]').each(function(){

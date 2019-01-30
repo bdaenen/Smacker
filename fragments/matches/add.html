@@ -1,11 +1,14 @@
-<div class="card">
-    <div class="card-body">
-        <h2>Add match</h2>
-        <div class="row">
-            <div class="col-sm">
-                <form id="add_match_form" method="post" action="#">
+<h2>Add match</h2>
+<form id="add_match_form" method="post" action="#">
+    <div class="card">
+        <div class="card-header">
+            Match data
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-sm">
                     <fieldset>
-                        <legend>Match data</legend>
+                        <legend class="sr-only">Match data</legend>
                         <div class="row">
                             <div class="col-sm">
                                 <div class="form-group">
@@ -49,69 +52,75 @@
                             </div>
                         </div>
                     </fieldset>
-                    <fieldset class="player-row-wrapper">
-                        <legend hidden>Player data</legend>
-                    </fieldset>
-
-                    <button class="btn btn-outline-primary js-add-player" title="Add player">+</button>
-                    <button class="btn btn-outline-primary js-remove-player" title="Add player">-</button>
-                    <div class="form-group">
-                    </div>
-                    <div class="form-group">
-                        <button class="btn btn-primary" type="submit"><span class="btn-text">Submit</span></button>
-                    </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
+    <div class="form-group">
+        <fieldset class="player-row-wrapper">
+            <legend hidden>Player data</legend>
+        </fieldset>
+    </div>
+    <div class="form-group">
+        <button class="btn btn-outline-primary js-add-player" title="Add player">+</button>
+        <button class="btn btn-outline-primary js-remove-player" title="Add player">-</button>
+    </div>
+    <div class="form-group">
+        <button class="btn btn-primary" type="submit"><span class="btn-text">Submit</span></button>
+    </div>
+</form>
 
 <template id="player-row-template">
-    <div class="js-player-row player-row">
-        <fieldset>
-            <legend class="player-row-title">Player $PLAYER_COUNT+1$</legend>
-            <div class="row">
-                <div class="col-sm">
-                    <div class="form-group">
-                        <label for="player_user_$PLAYER_COUNT$">Tag*</label>
-                        <select id="player_user_$PLAYER_COUNT$" data-src="users" required name="players[user_id][]" class="form-control">
-                            <option></option>
-                        </select>
+    <div class="js-player-row player-row col-sm-6">
+        <div class="card card-accent-character">
+            <div class="card-header player-row-title">Player $PLAYER_COUNT+1$</div>
+            <div class="card-body">
+                <fieldset>
+                    <legend class="sr-only">Player $PLAYER_COUNT+1$</legend>
+                    <div class="row">
+                        <div class="col-sm">
+                            <div class="form-group">
+                                <label for="player_user_$PLAYER_COUNT$">Tag*</label>
+                                <select id="player_user_$PLAYER_COUNT$" data-src="users" required name="players[user_id][]" class="form-control">
+                                    <option></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm">
+                            <div class="form-group">
+                                <label for="player_character_$PLAYER_COUNT$">Character*</label>
+                                <select id="player_character_$PLAYER_COUNT$" data-src="characters" required name="players[character_id][]" class="form-control">
+                                    <option></option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="col-sm">
-                    <div class="form-group">
-                        <label for="player_character_$PLAYER_COUNT$">Character*</label>
-                        <select id="player_character_$PLAYER_COUNT$" data-src="characters" required name="players[character_id][]" class="form-control">
-                            <option></option>
-                        </select>
+                    <div class="row">
+                        <div class="col-sm">
+                            <div class="form-group">
+                                <label for="player_team_$PLAYER_COUNT$">Team</label>
+                                <select id="player_team_$PLAYER_COUNT$" data-src="teams" name="players[team_id][]" class="form-control">
+                                    <option></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm">
+                            <div class="form-group">
+                                <label for="player_stocks_$PLAYER_COUNT$">Stocks Left*</label>
+                                <input class="form-control" required type="number" min="0" step="1" id="player_stocks_$PLAYER_COUNT$" name="players[data][$PLAYER_COUNT$][stocks]" value="0">
+                            </div>
+                        </div>
                     </div>
-                </div>
+                    <div class="form-check">
+                        <input id="player_default_winner_$PLAYER_COUNT$" type="checkbox" checked="checked" name="players[winner][]" value="0" class="form-check-input"/>
+                        <input id="player_winner_$PLAYER_COUNT$" type="checkbox" name="players[winner][]" value="1" class="form-check-input"/>
+                        <label for="player_winner_$PLAYER_COUNT$">
+                            P$PLAYER_COUNT+1$ Winner
+                        </label>
+                    </div>
+                </fieldset>
             </div>
-            <div class="row">
-                <div class="col-sm">
-                    <div class="form-group">
-                        <label for="player_team_$PLAYER_COUNT$">Team</label>
-                        <select id="player_team_$PLAYER_COUNT$" data-src="teams" name="players[team_id][]" class="form-control">
-                            <option></option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-sm">
-                    <div class="form-group">
-                        <label for="player_stocks_$PLAYER_COUNT$">Stocks Left*</label>
-                        <input class="form-control" required type="number" min="0" step="1" id="player_stocks_$PLAYER_COUNT$" name="players[data][$PLAYER_COUNT$][stocks]" value="0">
-                    </div>
-                </div>
-            </div>
-            <div class="form-check">
-                <input id="player_default_winner_$PLAYER_COUNT$" type="checkbox" checked="checked" name="players[winner][]" value="0" class="form-check-input"/>
-                <input id="player_winner_$PLAYER_COUNT$" type="checkbox" name="players[winner][]" value="1" class="form-check-input"/>
-                <label for="player_winner_$PLAYER_COUNT$">
-                    P$PLAYER_COUNT+1$ Winner
-                </label>
-            </div>
-        </fieldset>
+        </div>
     </div>
 </template>
 <script type="text/javascript" src="/fragments/matches/add.js"></script>

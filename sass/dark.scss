@@ -1,0 +1,27 @@
+
+body.dark {
+  background-color: var(--gray-900);
+  .main {
+    color: var(--text-color-light);
+  }
+  .card, .card-body {
+    background: var(--dark);
+    color: var(--text-color-light);
+  }
+
+  .card-header {
+    background: $gray-700;
+    color: var(--white);
+  }
+
+  .form-control {
+    background: lighten($dark, 10%);
+    color: var(--text-color-light);
+    &:hover,
+    &:focus {
+      background: lighten($dark, 20%);
+      color: var(--text-color-light);
+
+    }
+  }
+}
