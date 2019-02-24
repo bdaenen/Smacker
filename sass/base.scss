@@ -1,7 +1,28 @@
+html {
+  height: 100%;
+}
+
 body {
-  //background: var(--dark);
-  background: var(--gray-200);
+  height: 100%;
+  &:before {
+    background: url('/assets/SmashBall.svg') no-repeat center center;
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    filter: drop-shadow(10px 10px black);
+    opacity: 0.25;
+  }
+}
+body:not(.dark) {
+  background-color: var(--gray-200);
   color: var(--text-color-light);
+  .main {
+    background: var(--gray-200);
+  }
 }
 
 .main {
@@ -9,10 +30,6 @@ body {
   .container-fluid {
     padding-top: 30px;
   }
-}
-
-* {
-  transition: all 150ms;
 }
 
 h2, h3, h4, h5, h6 {

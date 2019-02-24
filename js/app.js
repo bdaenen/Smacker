@@ -106,15 +106,15 @@
       loadPage: function(path, data, callback) {
         if (path === '/login/login') {
           $('.sidebar').css('display', 'none');
-          return loadPage.call(this, '/login/login');
+          return _loadPage.call(this, '/login/login');
         }
         this.isAuthenticated(function(authenticated){
           if (authenticated) {
             $('.sidebar').removeAttr('style');
-            loadPage.call(this, path, data, callback);
+            _loadPage.call(this, path, data, callback);
           }
           else {
-            loadPage.call(this, '/login/login');
+            _loadPage.call(this, '/login/login');
             setTimeout(function(){this.showMessage('info', 'Please log in to continue.')}.bind(this), 100);
           }
         }.bind(this))
@@ -162,17 +162,27 @@
       sessionStorage.removeItem('user');
     }
 
-    function loadPage(path, data, callback) {
+    function _loadPage(path, data, callback) {
+        var timeStart;
         data = data || null;
         callback = callback || null;
 
         if (_isLoading) {return;}
         _isLoading = true;
         $.ajax({
+          beforeSend: function() {
+              timeStart = window.performance.now();
+              $('.js-main-wrapper').addClass('fade');
+          },
           url: '/fragments' + path + '.html',
           method: 'get'
         }).done(function(response){
-          this.$mainContent.html(this.renderTemplate(response, data));
+          // TODO: we could just hook into transition end.
+          var elapsed = window.performance.now() - timeStart;
+          setTimeout(function(){
+            this.$mainContent.html(this.renderTemplate(response, data));
+            $('.js-main-wrapper').removeClass('fade');
+          }.bind(this), Math.max(0, 300 - elapsed));
           _isLoading = false;
           _ignoreHashChange = true;
           window.location.hash = '#' + path;
