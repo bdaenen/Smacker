@@ -16,17 +16,38 @@
                                     <input class="form-control" type="text" required id="board_name" name="board[name]" value="">
                                 </div>
                             </div>
-                            <div class="col-sm">
-                                <div class="form-group">
-                                    <label for="board_users">Users*</label>
-                                    <select class="form-control" multiple required id="board_users" name="board[users]">
-                                        <option>Benno</option>
-                                        <option>WPIT</option>
-                                    </select>
-                                </div>
-                            </div>
                         </div>
                     </fieldset>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm">
+            <div class="card">
+                <div class="card-header player-row-title">Players</div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="board_users" class="sr-only">Users*</label>
+                        <select class="form-control js-select2" multiple required id="board_users" name="board[users]" data-src="users">
+                            <option>Benno</option>
+                            <option>WPIT</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm">
+            <div class="card">
+                <div class="card-header player-row-title">Stages</div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="board_stages" class="sr-only">Stages*</label>
+                        <select class="form-control js-select2" multiple required id="board_stages" name="board[stages]" data-src="stages">
+                            <option>Battlefield</option>
+                            <option>Final Destination</option>
+                        </select>
+                    </div>
                 </div>
             </div>
         </div>
