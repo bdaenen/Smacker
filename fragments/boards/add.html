@@ -1,0 +1,38 @@
+<h2>Create Board</h2>
+<form id="add_match_form" method="post" action="#">
+    <div class="card">
+        <div class="card-header">
+            Board
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-sm">
+                    <fieldset>
+                        <legend class="sr-only">Board data</legend>
+                        <div class="row">
+                            <div class="col-sm">
+                                <div class="form-group">
+                                    <label for="board_name">Name*</label>
+                                    <input class="form-control" type="text" required id="board_name" name="board[name]" value="">
+                                </div>
+                            </div>
+                            <div class="col-sm">
+                                <div class="form-group">
+                                    <label for="board_users">Users*</label>
+                                    <select class="form-control" multiple required id="board_users" name="board[users]">
+                                        <option>Benno</option>
+                                        <option>WPIT</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <button class="btn btn-primary" type="submit"><span class="btn-text">Submit</span></button>
+    </div>
+</form>
+<script type="text/javascript" src="/fragments/boards/add.js"></script>

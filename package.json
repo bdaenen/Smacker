@@ -20,6 +20,7 @@
     "popper.js": "^1.14.6",
     "postcss-uncss": "^0.16.1",
     "sass-module-importer": "^1.4.0",
+    "select2": "^4.0.6-rc.1",
     "uncss": "^0.16.2"
   },
   "devDependencies": {},

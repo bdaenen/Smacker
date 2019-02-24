@@ -39,6 +39,7 @@
           require.resolve('@coreui/coreui/dist/js/coreui.js'),
           require.resolve('pace-progress/pace.min.js'),
           require.resolve('perfect-scrollbar/dist/perfect-scrollbar.min.js'),
+          require.resolve('select2/js/select2.min.js'),
           'js/config.js',
           'js/app.js',
           'js/main.js',
