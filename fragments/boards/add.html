@@ -1,5 +1,5 @@
 <h2>Create Board</h2>
-<form id="add_match_form" method="post" action="#">
+<form id="add_board_form" method="post" action="#">
     <div class="card">
         <div class="card-header">
             Board
@@ -29,9 +29,7 @@
                 <div class="card-body">
                     <div class="form-group">
                         <label for="board_users" class="sr-only">Users*</label>
-                        <select class="form-control js-select2" multiple required id="board_users" name="board[users]" data-src="users">
-                            <option>Benno</option>
-                            <option>WPIT</option>
+                        <select class="form-control js-select2" multiple required id="board_users" name="board[users]" data-router="users" data-route="select" data-placeholder="Select authorized players" >
                         </select>
                     </div>
                 </div>
@@ -43,9 +41,7 @@
                 <div class="card-body">
                     <div class="form-group">
                         <label for="board_stages" class="sr-only">Stages*</label>
-                        <select class="form-control js-select2" multiple required id="board_stages" name="board[stages]" data-src="stages">
-                            <option>Battlefield</option>
-                            <option>Final Destination</option>
+                        <select class="form-control js-select2" multiple required id="board_stages" name="board[stages]" data-router="stages" data-route="select" data-placeholder="Select valid stages">
                         </select>
                     </div>
                 </div>

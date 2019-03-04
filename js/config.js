@@ -2,8 +2,12 @@
     'use strict';
 
     window.config = {
-      apiHost: 'https://smashtrack.benn0.be',
+      apiHost: 'http://127.0.0.1:3000',
       endpoints: {
+        board: {
+          add: '/boards/add',
+          edit: '/boards/edit'
+        },
         login: {
           login: '/login'
         },
@@ -14,18 +18,23 @@
         },
         characters: {
           list: '/characters',
+          select: '/characters/select',
           byUser: '/stats/user/characters'
         },
         stages: {
-          list: '/stages'
+          list: '/stages',
+          select: '/stages/select',
         },
         users: {
           list: '/users',
+          select: '/users/select',
           add: '/users/add',
-          change_password: '/users/change_password'
+          change_password: '/users/change_password',
+          boards: '/users/me/boards/select'
         },
         teams: {
-          list: '/teams'
+          list: '/teams',
+          select: '/teams/select',
         }
       }
     };

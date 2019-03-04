@@ -1,0 +1,48 @@
+<h2>Edit Board</h2>
+<form id="edit_board_form" method="post" action="#">
+    <div class="card">
+        <div class="card-header">
+            <label for="board">Board*</label>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label for="board">Board*</label>
+                        <select id="board" required class="form-control js-select2" data-router="users" data-route="boards" name="board[id]" data-placeholder="Select a board"><option></option></select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm">
+            <div class="card">
+                <div class="card-header player-row-title">Users</div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="board_users" class="sr-only">Users*</label>
+                        <select class="form-control js-select2" disabled multiple required id="board_users" name="board[users]" data-router="users" data-route="select" data-placeholder="Select authorized users">
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm">
+            <div class="card">
+                <div class="card-header player-row-title">Stages</div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="board_stages" class="sr-only">Stages*</label>
+                        <select class="form-control js-select2" disabled multiple required id="board_stages" name="board[stages]" data-router="stages" data-route="select" data-placeholder="Select valid stages">
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <button class="btn btn-primary" type="submit" disabled><span class="btn-text">Submit</span></button>
+    </div>
+</form>
+<script type="text/javascript" src="/fragments/boards/edit.js"></script>

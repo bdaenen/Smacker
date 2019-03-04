@@ -1,6 +1,35 @@
 <h2>Create match</h2>
 <form id="add_match_form" method="post" action="#">
-    <div class="card">
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="card">
+                <div class="card-header">
+                    <label for="match_board">Board*</label>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label for="match_board">Board*</label>
+                                <select id="match_board" required class="form-control js-select2" data-router="users" data-route="boards" name="match[board_ids]" data-placeholder="Select a board"><option></option></select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="js-match-card-wrapper"></div>
+    <div class="form-group">
+        <fieldset class="player-row-wrapper">
+            <legend hidden>Player data</legend>
+        </fieldset>
+    </div>
+    <div class="js-form-button-wrapper"></div>
+</form>
+
+<template id="match-card-template">
+    <div class="card" id="match-card">
         <div class="card-header">
             Match
         </div>
@@ -13,7 +42,7 @@
                             <div class="col-sm">
                                 <div class="form-group">
                                     <label for="match_date">Date*</label>
-                                    <input class="form-control" type="date" required id="match_date" name="match[date]" value="">
+                                    <input class="form-control" type="datetime-local" required id="match_date" name="match[date]" value="" step="1">
                                 </div>
                             </div>
                             <div class="col-sm">
@@ -29,7 +58,7 @@
                             <div class="col-sm">
                                 <div class="form-group">
                                     <label for="match_stage">Stage*</label>
-                                    <select id="match_stage" required class="form-control" data-src="stages" name="match[stage_id]"><option></option></select>
+                                    <select id="match_stage" required class="form-control js-select2-local" data-router="stages" data-route="select" name="match[stage_id]"><option></option></select>
                                 </div>
                             </div>
                             <div class="col-sm">
@@ -56,11 +85,9 @@
             </div>
         </div>
     </div>
-    <div class="form-group">
-        <fieldset class="player-row-wrapper">
-            <legend hidden>Player data</legend>
-        </fieldset>
-    </div>
+</template>
+
+<template id="form-buttons-template">
     <div class="form-group">
         <button class="btn btn-outline-primary js-add-player" title="Add player">+</button>
         <button class="btn btn-outline-primary js-remove-player" title="Add player">-</button>
@@ -68,7 +95,7 @@
     <div class="form-group">
         <button class="btn btn-primary" type="submit"><span class="btn-text">Submit</span></button>
     </div>
-</form>
+</template>
 
 <template id="player-row-template">
     <div class="js-player-row player-row col-sm-6">
@@ -81,7 +108,7 @@
                         <div class="col-sm">
                             <div class="form-group">
                                 <label for="player_user_$PLAYER_COUNT$">Tag*</label>
-                                <select id="player_user_$PLAYER_COUNT$" data-src="users" required name="players[user_id][]" class="form-control">
+                                <select id="player_user_$PLAYER_COUNT$" data-router="users" data-route="select" required name="players[user_id][]" class="form-control js-select2-local">
                                     <option></option>
                                 </select>
                             </div>
@@ -89,7 +116,7 @@
                         <div class="col-sm">
                             <div class="form-group">
                                 <label for="player_character_$PLAYER_COUNT$">Character*</label>
-                                <select id="player_character_$PLAYER_COUNT$" data-src="characters" required name="players[character_id][]" class="form-control">
+                                <select id="player_character_$PLAYER_COUNT$" data-router="characters" data-route="byUser" required name="players[character_id][]" class="form-control js-select2-local" data-placeholder="Select a character">
                                     <option></option>
                                 </select>
                             </div>
@@ -99,7 +126,7 @@
                         <div class="col-sm">
                             <div class="form-group">
                                 <label for="player_team_$PLAYER_COUNT$">Team</label>
-                                <select id="player_team_$PLAYER_COUNT$" data-src="teams" name="players[team_id][]" class="form-control">
+                                <select id="player_team_$PLAYER_COUNT$" data-router="teams" data-route="select" name="players[team_id][]" class="form-control js-select2">
                                     <option></option>
                                 </select>
                             </div>
