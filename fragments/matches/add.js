@@ -27,6 +27,7 @@
         });
 
         $form.on('submit', submitForm);
+        $form.on('reset', resetForm);
 
         $form.on('change', '[id*="player_winner_"]', function(e) {
             $(this).prev().prop('checked', !$(this).prop('checked'));
@@ -121,10 +122,15 @@
         app.saveMatch(formattedData, function(resp){
             if (resp.success) {
                 app.showMessage('success', 'Match saved!');
-                clearFields();
                 window.scrollTo(0, 0);
             }
         });
+    }
+
+    function resetForm(e) {
+        e.preventDefault();
+        clearFields();
+        $('#match_board').trigger('change');
     }
 
     /**
@@ -191,14 +197,6 @@
      * @param $playerRow
      */
     function initPlayerRow($playerRow) {
-        $playerRow.find('[data-src="characters"]').each(function(){
-            var $select = $(this);
-            app.getCharacters(function(characters){
-                characters.data.forEach(function(character){
-                    $select.append($('<option>').text(character.name).attr('value', character.id));
-                })
-            });
-        });
         $playerRow.find('[name="players[user_id][]"]').on('change', function(e){
             var $userSelect = $(this);
             var $select = $userSelect.closest('.js-player-row').find('[name="players[character_id][]"]');
@@ -211,7 +209,7 @@
             });
         });
 
-        $playerRow.find('[data-src="characters"]').on('change', function() {
+        $playerRow.find('[name="players[character_id][]"]').on('change', function() {
             var $this = $(this);
             var charname = $this.find('option:selected').text();
             charname = charname.toLowerCase().trim().replace(/\s/g, "").replace(/\./g, "");

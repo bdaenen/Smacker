@@ -3,6 +3,7 @@
     var config = window.config;
     var _isLoading = false;
     var _ignoreHashChange = false;
+    var _localStorageCache = JSON.parse(localStorage.getItem('smacker_storage')) || {};
 
     var app = {
         $mainContent: $('.js-main'),
@@ -176,6 +177,15 @@
                 this.apiPost('board', 'edit', data, callback);
             }
         },
+        localStore: {
+            get: function(key) {
+                return _localStorageCache[key];
+            },
+            set: function(key, value) {
+                _localStorageCache[key] = value;
+                localStorage.setItem('smacker_storage', JSON.stringify(_localStorageCache));
+            }
+        }
     };
 
     /**

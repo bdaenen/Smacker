@@ -18,3 +18,10 @@
 .select2-results__option {
   color: var(--text-color-dark);
 }
+
+@include media-breakpoint-down(md) {
+  .select2-results__option {
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+}

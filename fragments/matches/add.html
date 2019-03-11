@@ -4,7 +4,8 @@
         <div class="col-sm-4">
             <div class="card">
                 <div class="card-header">
-                    <label for="match_board">Board*</label>
+                    <label for="match_board" class="float-left">Board*</label>
+                    <button class="btn btn-link float-right p-0" type="reset">Reset</button>
                 </div>
                 <div class="card-body">
                     <div class="row">
@@ -90,10 +91,11 @@
 <template id="form-buttons-template">
     <div class="form-group">
         <button class="btn btn-outline-primary js-add-player" title="Add player">+</button>
-        <button class="btn btn-outline-primary js-remove-player" title="Add player">-</button>
+        <button class="btn btn-outline-primary js-remove-player" title="Remove player">-</button>
     </div>
     <div class="form-group">
-        <button class="btn btn-primary" type="submit"><span class="btn-text">Submit</span></button>
+        <button class="btn btn-primary" type="submit"><span>Submit</span></button>
+        <button class="btn btn-link ml-3 js-submit-without-reset" type="reset"><span>Reset</span></button>
     </div>
 </template>
 

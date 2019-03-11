@@ -1,7 +1,9 @@
 
 body.dark {
   background-color: var(--gray-900);
-  .main {
+  .main,
+  .theme-switcher,
+  .select2-container--default .select2-selection--single .select2-selection__placeholder {
     color: var(--text-color-light);
   }
   .main {
@@ -18,14 +20,31 @@ body.dark {
   }
 
   .form-control,
-  .select2-selection.select2-selection--multiple {
+  .select2-selection.select2-selection--multiple,
+  .select2-selection.select2-selection--single,
+  .select2-container--default .select2-results__option[aria-selected=true],
+  .select2-search__field {
     background: lighten($dark, 10%);
     color: var(--text-color-light);
+    &::placeholder
+    {
+      color: var(--text-color-light);
+    }
     &:hover,
     &:focus {
       background: lighten($dark, 20%);
       color: var(--text-color-light);
 
     }
+  }
+
+  .select2-dropdown {
+    background: lighten($dark, 10%);
+    color: var(--text-color-light);
+  }
+
+  .select2-results__option,
+  .select2-container--default .select2-selection--single .select2-selection__rendered {
+    color: var(--text-color-light);
   }
 }
