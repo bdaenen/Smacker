@@ -4,6 +4,7 @@
     var _isLoading = false;
     var _ignoreHashChange = false;
     var _localStorageCache = JSON.parse(localStorage.getItem('smacker_storage')) || {};
+    var $adminItems = $('[data-admin]');
 
     var app = {
         $mainContent: $('.js-main'),
@@ -116,7 +117,7 @@
         loadPage: function(path, data, callback) {
             if (path === '/login/login') {
                 $('.sidebar').css('display', 'none');
-                return _loadPage.call(this, '/login/login');
+                return _loadPage.call(this, '/login/login', data, callback);
             }
             this.isAuthenticated(function(authenticated){
                 if (authenticated) {
@@ -185,6 +186,21 @@
                 _localStorageCache[key] = value;
                 localStorage.setItem('smacker_storage', JSON.stringify(_localStorageCache));
             }
+        },
+        logout: function() {
+            this.apiGet('login', 'logout', {}, (data) => {
+                if (data.success) {
+                    clearUser();
+                    this.loadPage('/login/login', null, () => {
+                        setTimeout(() => {
+                            this.showMessage('success', data.message, 4000);
+                        }, 500);
+                    });
+                }
+                else {
+                    this.showMessage('danger', 'Something went wrong.');
+                }
+            });
         }
     };
 
@@ -193,6 +209,9 @@
      */
     function setUser(user) {
         sessionStorage.setItem('user', JSON.stringify(user));
+        if (!user.is_admin) {
+            $adminItems.remove();
+        }
     }
 
     /**
