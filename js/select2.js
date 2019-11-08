@@ -35,7 +35,9 @@
                         params.page = params.page || 0;
 
                         return {
-                            results: data.results,
+                            results: data.results.filter((result) => {
+                                return !(result.is_api_user !== undefined && result.is_api_user);
+                            }),
                             pagination: {
                                 more: ((params.page+1) * 50) < data.total
                             }
