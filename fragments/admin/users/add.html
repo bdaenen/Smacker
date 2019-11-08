@@ -1,0 +1,49 @@
+<h2>Add user</h2>
+<div class="card">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-sm">
+                <form id="add_user_form" method="post" action="#">
+                    <fieldset>
+                        <div class="row">
+													<div class="col-sm">
+                                <div class="form-group">
+                                    <label for="tag">Tag*</label>
+                                    <input class="form-control" type="text" required id="tag" name="tag" value="" autocomplete="new-password">
+                                </div>
+                            </div>
+                            <div class="col-sm">
+                                <div class="form-group">
+                                    <label for="password">Password*</label>
+                                    <input class="form-control" type="password" required id="password" name="password" value="" autocomplete="new-password">
+                                </div>
+                            </div>
+                            <div class="col-sm">
+                                <div class="form-group">
+                                    <label for="password_confirmation">Confirm password*</label>
+                                    <input class="form-control" type="password" required id="password_confirmation" name="password_confirmation" value="" autocomplete="new-password">
+                                </div>
+                            </div>
+                        </div>
+												<div class="form-check">
+														<input id="is_api_user" type="checkbox" name="is_api_user" value="1" class="form-check-input"/>
+														<label for="is_api_user">
+																API User
+														</label>
+											</div>
+													<div class="form-check">
+															<input id="is_admin_user" type="checkbox" name="is_admin_user" value="1" class="form-check-input"/>
+															<label for="is_admin_user">
+																	Admin User
+															</label>
+													</div>
+                    </fieldset>
+                    <div class="form-group">
+                        <input class="btn btn-outline-primary" type="submit" value="Submit">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="/fragments/admin/users/add.js"></script>
