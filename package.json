@@ -14,7 +14,7 @@
     "gulp-concat": "^2.6.1",
     "gulp-postcss": "^8.0.0",
     "gulp-sass": "^4.0.2",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "pace-progress": "^1.0.2",
     "perfect-scrollbar": "^1.4.0",
     "popper.js": "^1.15.0",
